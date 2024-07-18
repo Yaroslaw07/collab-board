@@ -1,7 +1,12 @@
+import { List } from "./list";
+import { NewButton } from "./new-button";
+
+/** eslint-disable react/jsx-no-undef */
 export const Sidebar = () => {
   return (
-    <aside className="fixed  h-[calc(100vh-0.5rem)] w-[60px] z-[1] top-1 bottom-1 bg-blue-800 text-white flex flex-col p-3 gap-y-4 rounded-l-md">
-      Sidebar!
+    <aside className="fixed z-[1] h-[calc(100vh-0.5rem)] w-[60px]  top-1 bottom-1 bg-blue-900 text-white flex flex-col p-3 gap-y-4 rounded-l-md">
+      <List />
+      <NewButton />
     </aside>
   );
 };
