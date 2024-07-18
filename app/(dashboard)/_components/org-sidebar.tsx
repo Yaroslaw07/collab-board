@@ -19,9 +19,9 @@ export const OrgSidebar = () => {
   const favorites = searchParams.get("favorites") === "true";
 
   return (
-    <div className="hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5">
+    <div className="hidden lg:flex flex-col space-y-4 w-[206px] pl-5 pt-5">
       <Link href="/">
-        <div className="flex items-center gap-x-2">
+        <div className="flex items-center justify-stretch gap-x-3">
           <Image src="logo.svg" width={60} height={60} alt="Logo" />
           <span className={cn("font-semibold text-2xl", font.className)}>
             Board
@@ -39,7 +39,7 @@ export const OrgSidebar = () => {
               width: "100%",
             },
             organizationSwitcherTrigger: {
-              padding: "6px",
+              padding: "8px",
               width: "100%",
               borderRadius: "8px",
               border: "1px solid #E5E7EB",
