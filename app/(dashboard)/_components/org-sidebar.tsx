@@ -19,12 +19,14 @@ export const OrgSidebar = () => {
   const favorites = searchParams.get("favorites") === "true";
 
   return (
-    <div className="hidden lg:flex flex-col space-y-4 w-[206px] pl-5 pt-5">
+    <div className="hidden lg:flex flex-col space-y-4 w-[206px] pl-5 pt-4">
       <Link href="/">
-        <div className="flex items-center justify-stretch gap-x-3">
-          <Image src="logo.svg" width={60} height={60} alt="Logo" />
-          <span className={cn("font-semibold text-2xl", font.className)}>
-            Board
+        <div className="flex items-center justify-center">
+          <Image src="logo.svg" width={100} height={100} alt="Logo" />
+          <span
+            className={cn("font-semibold text-2xl text-center", font.className)}
+          >
+            Collab Board
           </span>
         </div>
       </Link>
