@@ -9,6 +9,7 @@ import { useDebounceValue } from "usehooks-ts";
 
 export const SearchInput = () => {
   const router = useRouter();
+
   const [value, setValue] = useState("");
   const [debounceValue] = useDebounceValue(value, 500);
 
