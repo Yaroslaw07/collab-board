@@ -15,7 +15,7 @@ export default function DashboardPage({ searchParams }: DashboardPageProps) {
   const { organization } = useOrganization();
 
   return (
-    <div className=" flex-1 h-[calc(100%-80px)] p-4">
+    <div className=" flex-1 h-[calc(100%-80px)] p-4 overflow-auto">
       {!organization ? (
         <EmptyOrg />
       ) : (

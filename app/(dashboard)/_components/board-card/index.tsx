@@ -3,12 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { useAuth } from "@clerk/nextjs";
+
 import { formatDistanceToNow } from "date-fns";
 
-import { Overlay } from "./overlay";
-import { useAuth } from "@clerk/nextjs";
-import { Footer } from "./footer";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Actions } from "../actions";
+
+import { Overlay } from "./overlay";
+import { Footer } from "./footer";
+import { CircleEllipsis, MoreHorizontal } from "lucide-react";
 
 interface BoardCardProps {
   key: string;
@@ -50,6 +54,11 @@ export const BoardCard = ({
             className="object-fit"
           />
           <Overlay />
+          <Actions id={id} title={title} side="right">
+            <button className="absolute top-0 right-1 opacity-0 group-hover:opacity-100 transition-opacity px-1 py-1 outline-none">
+              <MoreHorizontal className="h-7 w-7 text-primary opacity-75 hover:opacity-100 transition-opacity" />
+            </button>
+          </Actions>
         </div>
         <Footer
           isFavorite={isFavorite}

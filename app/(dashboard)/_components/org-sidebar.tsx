@@ -24,7 +24,10 @@ export const OrgSidebar = () => {
         <div className="flex items-center justify-center">
           <Image src="logo.svg" width={100} height={100} alt="Logo" />
           <span
-            className={cn("font-semibold text-2xl text-center", font.className)}
+            className={cn(
+              "font-semibold text-primary text-2xl text-center",
+              font.className
+            )}
           >
             Collab Board
           </span>

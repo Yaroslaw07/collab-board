@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Toaster } from "@/components/ui/sonner";
 import { ConvexReactProvider } from "@/providers/convex-client-provider";
+import { ModalProvider } from "@/providers/modal-providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ConvexReactProvider>
           <Toaster />
+          <ModalProvider />
           {children}
         </ConvexReactProvider>
       </body>

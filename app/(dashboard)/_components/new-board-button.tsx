@@ -46,12 +46,18 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
         )}
       />
 
-      {!disabled && (
+      <p
+        className={cn(
+          "opacity-75 group-hover:opacity-100 font-semibold text-primary text-base mt-2",
+          (disabled || pending) && "opacity-45 group-hover:opacity-45"
+        )}
+      >
+        Create Board
+      </p>
+
+      {!(disabled || pending) && (
         <>
-          <div className="rounded-lg absolute opacity-0 group-hover:opacity-20 transition-opacity h-full w-full bg-black" />
-          <p className="opacity-0 group-hover:opacity-100 text-primary text-base mt-2">
-            Create Board
-          </p>
+          <div className="rounded-lg absolute opacity-0 group-hover:opacity-25 transition-opacity h-full w-full bg-black" />
         </>
       )}
     </button>

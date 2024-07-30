@@ -38,7 +38,7 @@ export const Footer = ({
       >
         <Heart
           className={cn(
-            "h-4 w-4 ",
+            "h-5 w-5",
             isFavorite && "fill-[#0e766e] text-[#0e766e]"
           )}
         />
