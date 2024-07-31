@@ -19,7 +19,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
 
   const onClick = async () => {
     mutate({
-      title: "New Board",
+      title: "Untitled",
       orgId,
     })
       .then((id) => {

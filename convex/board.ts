@@ -8,7 +8,6 @@ const images = [
   "/placeholders/3.svg",
   "/placeholders/4.svg",
   "/placeholders/5.svg",
-  "/placeholders/6.svg",
 ];
 
 export const create = mutation({

@@ -41,7 +41,7 @@ export const Footer = ({
         disabled={disabled}
         onClick={handleClick}
         className={cn(
-          "opacity-0 group-hover:opacity-100 transition absolute top-[0.85rem] right-3 text-muted-foreground hover:text-[#0e766e] hover:scale-110",
+          "opacity-0 group-hover:opacity-100 transition absolute top-[0.85rem] right-3 text-muted-foreground hover:text-accent hover:scale-110",
           isFavorite && "opacity-100",
           disabled && "cursor-not-allowed opacity-75"
         )}
@@ -49,7 +49,7 @@ export const Footer = ({
         <Heart
           className={cn(
             "h-5 w-5",
-            isFavorite && "fill-[#0e766e] text-[#0e766e]"
+            isFavorite && "fill-accent text-[hsl(175,22%,23%)]"
           )}
         />
       </button>
