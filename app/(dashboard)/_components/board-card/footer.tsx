@@ -30,7 +30,7 @@ export const Footer = ({
   };
 
   return (
-    <div className="relative bg-white p-3">
+    <div className="relative bg-background p-3">
       <p className="text-[16px] font-medium truncate max-w-[calc(100%-20px)]">
         {title}
       </p>
