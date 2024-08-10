@@ -36,7 +36,7 @@ export const Info = ({ boardId }: InfoProps) => {
   return (
     <div className="absolute top-2 left-2 bg-background rounded-md px-1.5 h-12 flex items-center shadow-md">
       <Hint label="Go to dashboard" side="bottom" sideOffset={10}>
-        <Button asChild className="px-2" variant={"board"}>
+        <Button asChild className="pl-1 pr-2" variant={"board"}>
           <Link href="/">
             <Image src="/logo.svg" width={50} height={50} alt="Logo" />
             <span
@@ -45,7 +45,7 @@ export const Info = ({ boardId }: InfoProps) => {
                 font.className
               )}
             >
-              Board
+              C&B
             </span>
           </Link>
         </Button>
