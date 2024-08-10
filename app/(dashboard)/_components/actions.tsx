@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
 
@@ -13,7 +16,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -34,6 +36,9 @@ export const Actions = ({
   id,
   title,
 }: ActionProps) => {
+  const pathname = usePathname();
+  const router = useRouter();
+
   const { onOpen } = useRenameModal();
   const { mutate, pending } = useApiMutation(api.board.remove);
 
@@ -46,7 +51,10 @@ export const Actions = ({
 
   const onDelete = () => {
     mutate({ id })
-      .then(() => toast.success("Board deleted"))
+      .then(() => {
+        pathname.startsWith("/board/") && router.push("/");
+        toast.success("Board deleted");
+      })
       .catch(() => toast.error("Failed to delete board"));
   };
 
