@@ -11,8 +11,6 @@ const liveblocks = new Liveblocks({
 });
 
 export async function POST(request: Request) {
-  console.log(process.env.NEXT_PUBLIC_LIVE_BLOCKS_API_KEY);
-
   const authorization = await auth();
   const user = await currentUser();
 
@@ -22,7 +20,6 @@ export async function POST(request: Request) {
 
   const { room } = await request.json();
 
-  console.log("ROOM", room);
   const board = await convex.query(api.board.get, { id: room });
 
   if (board?.orgId !== authorization.orgId) {
@@ -41,11 +38,6 @@ export async function POST(request: Request) {
   }
 
   const { status, body } = await session.authorize();
-
-  console.log("SESSION_INFO", {
-    status,
-    body,
-  });
 
   return new Response(body, { status });
 }
