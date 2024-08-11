@@ -38,7 +38,7 @@ export const Info = ({ boardId }: InfoProps) => {
       <Hint label="Go to dashboard" side="bottom" sideOffset={10}>
         <Button asChild className="pl-1 pr-2" variant={"board"}>
           <Link href="/">
-            <Image src="/logo.svg" width={50} height={50} alt="Logo" />
+            <Image src="/logo.svg" width={45} height={45} alt="Logo" />
             <span
               className={cn(
                 "font-semibold text-xl ml-2 text-black",
