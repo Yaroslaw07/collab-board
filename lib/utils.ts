@@ -3,7 +3,7 @@ import React from "react";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { Camera } from "@/types/canvas";
+import { Camera, Color } from "@/types/canvas";
 
 const COLORS = [
   "#DC2626",
@@ -33,4 +33,8 @@ export function parsePointerEventToCanvasPoint(
     x: Math.round(e.clientX) - camera.x,
     y: Math.round(e.clientY) - camera.y,
   };
+}
+
+export function parseColorToCss(color: Color) {
+  return `#${color.r.toString(16).padStart(2, "0")}${color.g.toString(16).padStart(2, "0")}${color.b.toString(16).padStart(2, "0")}`;
 }
