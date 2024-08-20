@@ -7,8 +7,6 @@ import { useSelf, useStorage } from "@liveblocks/react/suspense";
 import { useSelectionBounds } from "@/hooks/use-selection-bounds";
 import ResizeHandle from "./resize-handle";
 
-const HANDLE_WIDTH = 8;
-
 interface SelectionBoxProps {
   onResizeHandlePointerDown: (corner: Side, initialBounds: XYWH) => void;
 }
@@ -30,10 +28,6 @@ export const SelectionBox = memo(
       return null;
     }
 
-    const handlePointerDown = (e: React.PointerEvent<SVGRectElement>) => {
-      // TODO: Add resize handle pointer down logic
-    };
-
     return (
       <>
         <rect
@@ -51,56 +45,68 @@ export const SelectionBox = memo(
               cursor="nwse-resize"
               x={bounds.x}
               y={bounds.y}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() =>
+                onResizeHandlePointerDown(Side.Top + Side.Left, bounds)
+              }
             />
             {/* Top-middle */}
             <ResizeHandle
               cursor="ns-resize"
               x={bounds.x + bounds.width / 2}
               y={bounds.y}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() => onResizeHandlePointerDown(Side.Top, bounds)}
             />
             {/* Top-right corner */}
             <ResizeHandle
               cursor="nesw-resize"
               x={bounds.x + bounds.width}
               y={bounds.y}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() =>
+                onResizeHandlePointerDown(Side.Top + Side.Right, bounds)
+              }
             />
             {/* Middle-left */}
             <ResizeHandle
               cursor="ew-resize"
               x={bounds.x}
               y={bounds.y + bounds.height / 2}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() => onResizeHandlePointerDown(Side.Left, bounds)}
             />
             {/* Middle-right */}
             <ResizeHandle
               cursor="ew-resize"
               x={bounds.x + bounds.width}
               y={bounds.y + bounds.height / 2}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() =>
+                onResizeHandlePointerDown(Side.Right, bounds)
+              }
             />
             {/* Bottom-left corner */}
             <ResizeHandle
               cursor="nesw-resize"
               x={bounds.x}
               y={bounds.y + bounds.height}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() =>
+                onResizeHandlePointerDown(Side.Bottom + Side.Left, bounds)
+              }
             />
             {/* Bottom-middle */}
             <ResizeHandle
               cursor="ns-resize"
               x={bounds.x + bounds.width / 2}
               y={bounds.y + bounds.height}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() =>
+                onResizeHandlePointerDown(Side.Bottom, bounds)
+              }
             />
             {/* Bottom-right corner */}
             <ResizeHandle
               cursor="nwse-resize"
               x={bounds.x + bounds.width}
               y={bounds.y + bounds.height}
-              onPointerDown={handlePointerDown}
+              onPointerDown={() =>
+                onResizeHandlePointerDown(Side.Bottom + Side.Right, bounds)
+              }
             />
           </>
         )}

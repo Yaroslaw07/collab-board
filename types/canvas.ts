@@ -115,6 +115,7 @@ export type CanvasState =
   | {
       mode: CanvasMode.Resizing;
       initialBounds: XYWH;
+      corner: Side;
     }
   | {
       mode: CanvasMode.Pencil;
