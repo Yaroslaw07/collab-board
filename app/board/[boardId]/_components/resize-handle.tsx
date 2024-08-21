@@ -15,7 +15,7 @@ const ResizeHandle: React.FC<ResizeHandleProps> = ({
 }) => {
   return (
     <rect
-      className="fill-background stroke-1 stroke-blue-500"
+      className="fill-secondary stroke-1 stroke-accent"
       x={0}
       y={0}
       style={{
