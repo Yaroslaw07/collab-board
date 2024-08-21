@@ -104,3 +104,10 @@ export function findIntersectionLayersWithRectangles(
 
   return ids;
 }
+
+export function getContrastingTextColor(color: Color) {
+  const luminance = Math.round(
+    (color.r * 299 + color.g * 587 + color.b * 114) / 1000
+  );
+  return luminance > 182 ? "#000" : "#fff";
+}
