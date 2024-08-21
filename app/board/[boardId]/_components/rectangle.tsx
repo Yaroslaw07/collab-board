@@ -28,6 +28,8 @@ export const Rectangle = ({
       width={width}
       height={height}
       strokeWidth={1}
+      rx={8}
+      ry={8}
       fill={fill ? parseColorToCss(fill) : "#000"}
       stroke={selectionColor || "transparent"}
     />
