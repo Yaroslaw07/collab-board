@@ -26,6 +26,7 @@ import {
   XYWH,
 } from "@/types/canvas";
 import {
+  findIntersectionLayersWithRectangles,
   parseConnectionIdToColor,
   parsePointerEventToCanvasPoint,
   resizeBounds,
@@ -133,6 +134,37 @@ export const Canvas = ({ boardId }: CanvasProps) => {
     }
   }, []);
 
+  const updateSelectionNet = useMutation(
+    ({ storage, setMyPresence }, current: Point, origin: Point) => {
+      const layers = storage.get("layers").toImmutable();
+      setCanvasState({
+        mode: CanvasMode.SelectionNet,
+        origin,
+        current,
+      });
+
+      const ids = findIntersectionLayersWithRectangles(
+        layersIds,
+        layers,
+        origin,
+        current
+      );
+
+      setMyPresence({ selection: ids });
+    },
+    [layersIds]
+  );
+
+  const startMultiSelection = useCallback((current: Point, origin: Point) => {
+    if (Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) > 5) {
+      setCanvasState({
+        mode: CanvasMode.SelectionNet,
+        origin,
+        current,
+      });
+    }
+  }, []);
+
   const resizeSelectedLayer = useMutation(
     ({ storage, self }, point: Point) => {
       if (canvasState.mode !== CanvasMode.Resizing) return;
@@ -182,6 +214,14 @@ export const Canvas = ({ boardId }: CanvasProps) => {
       e.preventDefault();
 
       const current = parsePointerEventToCanvasPoint(e, camera);
+
+      if (canvasState.mode === CanvasMode.SelectionNet) {
+        updateSelectionNet(current, canvasState.origin);
+      }
+
+      if (canvasState.mode === CanvasMode.Pressing) {
+        startMultiSelection(current, canvasState.origin);
+      }
 
       if (canvasState.mode === CanvasMode.Translating) {
         translateSelectedLayers(current);
@@ -311,6 +351,16 @@ export const Canvas = ({ boardId }: CanvasProps) => {
             />
           ))}
           <SelectionBox onResizeHandlePointerDown={onResizeHandlePointerDown} />
+          {canvasState.mode === CanvasMode.SelectionNet &&
+            canvasState.current != null && (
+              <rect
+                className="fill-accent/80 stroke-accent stroke-1"
+                x={Math.min(canvasState.origin.x, canvasState.current.x)}
+                y={Math.min(canvasState.origin.y, canvasState.current.y)}
+                width={Math.abs(canvasState.origin.x - canvasState.current.x)}
+                height={Math.abs(canvasState.origin.y - canvasState.current.y)}
+              />
+            )}
           <CursorsPresence />
         </g>
       </svg>
