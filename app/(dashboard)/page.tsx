@@ -3,15 +3,11 @@
 import { useOrganization } from "@clerk/nextjs";
 import { EmptyOrg } from "./_components/empty-org";
 import { BoardList } from "./_components/board-list";
+import { useSearchParams } from "next/navigation";
 
-interface DashboardPageProps {
-  searchParams: {
-    search?: string;
-    favorites?: string;
-  };
-}
+export default function DashboardPage() {
+  const params = useSearchParams();
 
-export default function DashboardPage({ searchParams }: DashboardPageProps) {
   const { organization } = useOrganization();
 
   return (
@@ -19,7 +15,7 @@ export default function DashboardPage({ searchParams }: DashboardPageProps) {
       {!organization ? (
         <EmptyOrg />
       ) : (
-        <BoardList orgId={organization.id} query={searchParams} />
+        <BoardList orgId={organization.id} query={params} />
       )}
     </div>
   );
