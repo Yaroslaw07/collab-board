@@ -73,6 +73,33 @@ export const Canvas = ({ boardId }: CanvasProps) => {
 
   const deleteLayers = useDeleteLayers();
 
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      switch (e.key) {
+        case "Backspace": {
+          deleteLayers();
+          break;
+        }
+        case "z": {
+          if (e.ctrlKey || e.metaKey) {
+            if (e.shiftKey) {
+              history.redo();
+            } else {
+              history.undo();
+            }
+            break;
+          }
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [deleteLayers, history]);
+
   useDisableScrollBounce();
 
   const insertLayer = useMutation(
@@ -414,8 +441,8 @@ export const Canvas = ({ boardId }: CanvasProps) => {
         setCanvasState={setCanvasState}
         canRedo={canRedo}
         canUndo={canUndo}
-        redo={() => {}}
-        undo={() => {}}
+        redo={history.redo}
+        undo={history.undo}
       />
       <SelectionTools camera={camera} setLastUsedColor={setLastUsedColor} />
       <svg
