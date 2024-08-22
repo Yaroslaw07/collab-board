@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useCallback, useState } from "react";
 
 import { nanoid } from "nanoid";
@@ -34,6 +34,7 @@ import {
   parsePointerEventToCanvasPoint,
   resizeBounds,
 } from "@/lib/utils";
+import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
 
 import { Info } from "./info";
 import { Participants } from "./participants";
@@ -43,6 +44,7 @@ import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
 import { Path } from "./layer-types/path";
+import { useDeleteLayers } from "@/hooks/use-delete-layers";
 
 const MAX_LAYERS = 100;
 
@@ -68,6 +70,10 @@ export const Canvas = ({ boardId }: CanvasProps) => {
   const history = useHistory();
   const canUndo = useCanUndo();
   const canRedo = useCanRedo();
+
+  const deleteLayers = useDeleteLayers();
+
+  useDisableScrollBounce();
 
   const insertLayer = useMutation(
     (
