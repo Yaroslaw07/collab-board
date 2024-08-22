@@ -12,6 +12,7 @@ import {
   useMutation,
   useStorage,
   useOthersMapped,
+  useSelf,
 } from "@liveblocks/react/suspense";
 import { LiveObject } from "@liveblocks/client";
 
@@ -27,6 +28,7 @@ import {
 } from "@/types/canvas";
 import {
   findIntersectionLayersWithRectangles,
+  parseColorToCss,
   parseConnectionIdToColor,
   parsePenPointsToPathLayer,
   parsePointerEventToCanvasPoint,
@@ -40,6 +42,7 @@ import { CursorsPresence } from "./cursor-presence";
 import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
+import { Path } from "./layer-types/path";
 
 const MAX_LAYERS = 100;
 
@@ -50,12 +53,13 @@ interface CanvasProps {
 export const Canvas = ({ boardId }: CanvasProps) => {
   const layersIds = useStorage((root) => root.layerIds);
 
+  const pencilDraft = useSelf((me) => me.presence.pencilDraft);
   const [canvasState, setCanvasState] = useState<CanvasState>({
     mode: CanvasMode.None,
   });
 
   const [camera, setCamera] = useState<Camera>({ x: 0, y: 0 });
-  const [lastUserColor, setLastUserColor] = useState<Color>({
+  const [lastUsedColor, setLastUsedColor] = useState<Color>({
     r: 255,
     g: 255,
     b: 255,
@@ -90,7 +94,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
         y: position.y,
         height: 100,
         width: 100,
-        fill: lastUserColor,
+        fill: lastUsedColor,
       });
 
       liveLayersIds.push(layerId);
@@ -99,7 +103,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
       setMyPresence({ selection: [layerId] }, { addToHistory: true });
       setCanvasState({ mode: CanvasMode.None });
     },
-    [lastUserColor]
+    [lastUsedColor]
   );
 
   const translateSelectedLayers = useMutation(
@@ -202,7 +206,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
       const id = nanoid();
       liveLayers.set(
         id,
-        new LiveObject(parsePenPointsToPathLayer(pencilDraft, lastUserColor))
+        new LiveObject(parsePenPointsToPathLayer(pencilDraft, lastUsedColor))
       );
 
       const liveLayersIds = storage.get("layerIds");
@@ -211,17 +215,17 @@ export const Canvas = ({ boardId }: CanvasProps) => {
       setMyPresence({ pencilDraft: null });
       setCanvasState({ mode: CanvasMode.Pencil });
     },
-    [lastUserColor]
+    [lastUsedColor]
   );
 
   const startDrawing = useMutation(
     ({ setMyPresence }, point: Point, pressure: number) => {
       setMyPresence({
         pencilDraft: [[point.x, point.y, pressure]],
-        penColor: lastUserColor,
+        penColor: lastUsedColor,
       });
     },
-    []
+    [lastUsedColor]
   );
 
   const resizeSelectedLayer = useMutation(
@@ -407,7 +411,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
         redo={() => {}}
         undo={() => {}}
       />
-      <SelectionTools camera={camera} setLastUsedColor={setLastUserColor} />
+      <SelectionTools camera={camera} setLastUsedColor={setLastUsedColor} />
       <svg
         className="h-[100vh] w-[100vw]"
         onWheel={onWheel}
@@ -437,6 +441,14 @@ export const Canvas = ({ boardId }: CanvasProps) => {
               />
             )}
           <CursorsPresence />
+          {pencilDraft != null && pencilDraft.length > 0 && (
+            <Path
+              points={pencilDraft}
+              fill={parseColorToCss(lastUsedColor)}
+              x={0}
+              y={0}
+            />
+          )}
         </g>
       </svg>
     </main>
