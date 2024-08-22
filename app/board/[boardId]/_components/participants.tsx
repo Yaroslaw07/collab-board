@@ -5,6 +5,7 @@ import { useOthers, useSelf } from "@liveblocks/react/suspense";
 import { UserAvatar } from "./user-avatar";
 
 import { parseConnectionIdToColor, SELF_COLOR } from "@/lib/utils";
+import { TabSeparator } from "./tab-separator";
 
 const MAX_SHOWN_USERS = 2;
 
@@ -15,7 +16,7 @@ export const Participants = () => {
 
   return (
     <div className="absolute h-12 top-2 right-2 bg-background rounded-md p-3 flex items-center shadow-md">
-      <div className="flex gap-x-2">
+      <div className="flex gap-x-2 items-center">
         {users.slice(0, MAX_SHOWN_USERS).map(({ connectionId, info }) => {
           return (
             <UserAvatar
@@ -34,6 +35,8 @@ export const Participants = () => {
             fallback={`+${users.length - MAX_SHOWN_USERS}`}
           />
         )}
+
+        {users.length > 0 && <TabSeparator />}
 
         {currentUser && (
           <UserAvatar

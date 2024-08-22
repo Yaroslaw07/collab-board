@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useQuery } from "convex/react";
 import { Poppins } from "next/font/google";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Hint } from "@/components/hint";
@@ -11,7 +12,8 @@ import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
 import { Actions } from "@/app/(dashboard)/_components/actions";
-import { Menu } from "lucide-react";
+
+import { TabSeparator } from "./tab-separator";
 
 interface InfoProps {
   boardId: string;
@@ -21,10 +23,6 @@ const font = Poppins({
   subsets: ["latin"],
   weight: ["600"],
 });
-
-export const TabSeparator = () => {
-  return <div className="text-primary-300 px-1.5">|</div>;
-};
 
 export const Info = ({ boardId }: InfoProps) => {
   const data = useQuery(api.board.get, {
