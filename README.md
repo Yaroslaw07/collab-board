@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 👥📝 Collab Board
 
-## Getting Started
+**Collab Board** is a real-time digital canvas for interactive, multi-user collaboration, built with modern web technologies. Whether you're brainstorming, planning, or just doodling with friends, this project offers a seamless experience for collaborative creativity!
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Authentication**: Secure login and session management with Clerk.
+- **Real-time Presence**: See who’s online and what they’re doing using Liveblocks.
+- **Backend Logic**: Powered by Convex for efficient server-side operations.
+- **Beautiful UI**: Styled with Tailwind CSS and Chadcn/UI for a responsive and sleek design.
+- **Custom Hooks & Providers**: Enhance reusability and state management.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**: Framework for server-rendered React applications.
+- **Tailwind CSS**: Utility-first CSS framework.
+- **Convex**: Handles server-side logic and data synchronization.
+- **Liveblocks**: Manages real-time collaboration and presence.
+- **Clerk**: User authentication and session management.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🧑‍💻 Getting Started
 
-## Learn More
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/Yaroslaw07/collab_board.git
+    ```
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3. **Set up environment variables**:
+    - Create a `.env.local` file in the root of the project.
+    - Add the required environment variable from `.env.example`
+    - Replace the placeholder values with your actual keys.
+4. **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+5. **Open your browser** at `http://localhost:3000` to see the project in action!
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project is deployed on Vercel and can be accessed live at [collab-board.vercel.app](https://collab-board-ten.vercel.app/).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📚 Documentation
 
-## Deploy on Vercel
+- For detailed setup and customization, check out the [Liveblocks](https://liveblocks.io/docs), [Clerk](https://clerk.dev/docs), and [Convex](https://docs.convex.dev) documentation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We welcome contributions! Feel free to submit issues, fork the repository, and create pull requests.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Made with ❤️ by [Yaroslaw07](https://github.com/Yaroslaw07)
