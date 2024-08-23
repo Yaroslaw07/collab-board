@@ -2,6 +2,9 @@
 
 **Collab Board** is a real-time digital canvas for interactive, multi-user collaboration, built with modern web technologies. Whether you're brainstorming, planning, or just doodling with friends, this project offers a seamless experience for collaborative creativity!
 
+![image](https://github.com/user-attachments/assets/d446c9bd-af99-45ad-a1c8-91cdd0c0855c)
+
+
 ## 🚀 Features
 
 - **Authentication**: Secure login and session management with Clerk.
