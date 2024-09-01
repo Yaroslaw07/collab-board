@@ -3,10 +3,16 @@
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 
+import { useAction } from "convex/react";
+
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useProModal } from "@/store/use-pro-modal";
 import { cn } from "@/lib/utils";
+
+import { api } from "@/convex/_generated/api";
+import { useState } from "react";
+import { useOrganization } from "@clerk/nextjs";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -15,6 +21,28 @@ const font = Poppins({
 
 export const ProModal = () => {
   const { isOpen, onClose } = useProModal();
+
+  const pay = useAction(api.stripe.pay);
+
+  const [pending, setPending] = useState(false);
+
+  const { organization } = useOrganization();
+
+  const onClick = async () => {
+    if (!organization?.id) return;
+
+    setPending(true);
+
+    try {
+      const redirectUrl = await pay({
+        orgId: organization.id,
+      });
+
+      window.location.href = redirectUrl;
+    } finally {
+      setPending(false);
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -37,7 +65,12 @@ export const ProModal = () => {
               <li>Unlimited members</li>
             </ul>
           </div>
-          <Button size="sm" className="w-full">
+          <Button
+            onClick={onClick}
+            disabled={pending}
+            size="sm"
+            className="w-full"
+          >
             Upgrade
           </Button>
         </div>
