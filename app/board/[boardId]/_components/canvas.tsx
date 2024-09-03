@@ -45,6 +45,7 @@ import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
 import { Path } from "./layer-types/path";
 import { useDeleteLayers } from "@/hooks/use-delete-layers";
+import { useRouter } from "next/router";
 
 const MAX_LAYERS = 100;
 

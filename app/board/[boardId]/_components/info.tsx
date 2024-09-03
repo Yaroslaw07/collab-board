@@ -1,9 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useQuery } from "convex/react";
 import { Poppins } from "next/font/google";
+
+import { useQuery } from "convex/react";
 import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -25,11 +29,17 @@ const font = Poppins({
 });
 
 export const Info = ({ boardId }: InfoProps) => {
-  const data = useQuery(api.board.get, {
+  const router = useRouter();
+
+  const board = useQuery(api.board.get, {
     id: boardId as Id<"boards">,
   });
 
-  if (!data) return <InfoSkeleton />;
+  useEffect(() => {
+    document.title = board ? `${board?.title}'s board` : "Board";
+  }, [board?.title]);
+
+  if (!board) return <InfoSkeleton />;
 
   return (
     <div className="absolute top-2 left-2 bg-background rounded-md px-1.5 h-12 flex items-center shadow-md">
@@ -51,11 +61,11 @@ export const Info = ({ boardId }: InfoProps) => {
       <TabSeparator />
       <Hint label="Current title" sideOffset={10} side="bottom">
         <Button variant="board" className="text-base font-normal px-2">
-          {data.title}
+          {board.title}
         </Button>
       </Hint>
       <TabSeparator />
-      <Actions id={data._id} title={data.title} side="bottom" sideOffset={10}>
+      <Actions id={board._id} title={board.title} side="bottom" sideOffset={10}>
         <div>
           <Hint label="Main menu" side="bottom" sideOffset={10}>
             <Button size="icon" variant="board">
