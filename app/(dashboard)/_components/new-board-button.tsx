@@ -16,6 +16,7 @@ interface NewBoardButtonProps {
 
 export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
   const router = useRouter();
+
   const { onOpen } = useProModal();
   const { mutate, pending } = useApiMutation(api.board.create);
 
@@ -26,12 +27,14 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
         orgId,
       });
 
+      console.log(result);
+
       if (result instanceof Error) {
         throw new Error(result.message);
       }
 
       toast.success("Board created!");
-      router.push(`/board/${result.id}`);
+      router.push(`/board/${result}`);
     } catch (e) {
       toast.error("Failed to create board");
       onOpen();
