@@ -1,13 +1,21 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { OrganizationSwitcher } from "@clerk/nextjs";
-import { LayoutDashboard, Star } from "lucide-react";
-import { Poppins } from "next/font/google";
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+import { Poppins } from "next/font/google";
 import { useSearchParams } from "next/navigation";
+
+import { OrganizationSwitcher, useOrganization } from "@clerk/nextjs";
+import { Banknote, LayoutDashboard, Star } from "lucide-react";
+import { useAction, useQuery } from "convex/react";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { api } from "@/convex/_generated/api";
+import { Badge } from "@/components/ui/badge";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -17,6 +25,32 @@ const font = Poppins({
 export const OrgSidebar = () => {
   const searchParams = useSearchParams();
   const favorites = searchParams.get("favorites") === "true";
+
+  const { organization } = useOrganization();
+  const isSubscribed = useQuery(api.subscriptions.getIsSubscribed, {
+    orgId: organization?.id,
+  });
+
+  const portal = useAction(api.stripe.portal);
+  const pay = useAction(api.stripe.pay);
+
+  const [pending, setPending] = useState(false);
+
+  const onClick = async () => {
+    if (!organization?.id) return;
+    setPending(true);
+
+    try {
+      const action = isSubscribed ? portal : pay;
+      const redirectUrl = await action({ orgId: organization.id });
+
+      window.location.href = redirectUrl;
+    } catch {
+      toast.error("Failed to redirect to payments");
+    } finally {
+      setPending(false);
+    }
+  };
 
   return (
     <div className="hidden lg:flex flex-col space-y-4 w-[206px] pl-5 pt-3">
@@ -31,6 +65,7 @@ export const OrgSidebar = () => {
           >
             Collab Board
           </span>
+          {isSubscribed && <Badge variant="secondary">PRO</Badge>}
         </div>
       </Link>
       <OrganizationSwitcher
@@ -77,6 +112,16 @@ export const OrgSidebar = () => {
             <Star className="h-4 w-4 mr-2" />
             Favorite boards
           </Link>
+        </Button>
+        <Button
+          onClick={onClick}
+          disabled={pending}
+          variant="ghost"
+          size="lg"
+          className="font-normal justify-start px-2 w-full"
+        >
+          <Banknote className="h-4 w-4 mr-2" />
+          {isSubscribed ? "Payment settings" : "Upgrade"}
         </Button>
       </div>
     </div>
