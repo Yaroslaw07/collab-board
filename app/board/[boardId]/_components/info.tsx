@@ -15,7 +15,7 @@ import { Hint } from "@/components/hint";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
-import { Actions } from "@/app/(dashboard)/_components/actions";
+import { BoardActions } from "@/app/(dashboard)/_components/board-actions";
 
 import { TabSeparator } from "./tab-separator";
 
@@ -65,7 +65,12 @@ export const Info = ({ boardId }: InfoProps) => {
         </Button>
       </Hint>
       <TabSeparator />
-      <Actions id={board._id} title={board.title} side="bottom" sideOffset={10}>
+      <BoardActions
+        id={board._id}
+        title={board.title}
+        side="bottom"
+        sideOffset={10}
+      >
         <div>
           <Hint label="Main menu" side="bottom" sideOffset={10}>
             <Button size="icon" variant="board">
@@ -73,7 +78,7 @@ export const Info = ({ boardId }: InfoProps) => {
             </Button>
           </Hint>
         </div>
-      </Actions>
+      </BoardActions>
     </div>
   );
 };

@@ -7,12 +7,15 @@ import {
 } from "@clerk/nextjs";
 import { SearchInput } from "./search-input";
 import { SettingsButton } from "./settings-button";
+import { ThemeOptions } from "@/components/theme/theme-options";
+import { Sun } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Navbar = () => {
   const { organization } = useOrganization();
 
   return (
-    <div className="flex items-center gap-x-4 px-6 py-2">
+    <div className="flex items-center gap-x-2 px-6 py-2">
       <div className="hidden lg:flex lg:flex-1">
         <SearchInput />
       </div>
@@ -41,6 +44,12 @@ export const Navbar = () => {
         />
       </div>
       {organization && <SettingsButton />}
+      <ThemeOptions side="bottom">
+        <Button variant="outline">
+          <Sun className="h-4 w-4" />
+        </Button>
+      </ThemeOptions>
+      <div className="w-1" />
       <UserButton />
     </div>
   );

@@ -6,6 +6,7 @@ import { ConvexReactProvider } from "@/providers/convex-client-provider";
 import { ModalProvider } from "@/providers/modal-providers";
 
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ConvexReactProvider>
-          <Toaster />
-          <ModalProvider />
-          {children}
-        </ConvexReactProvider>
+        <ThemeProvider attribute="class">
+          <ConvexReactProvider>
+            <Toaster />
+            <ModalProvider />
+            {children}
+          </ConvexReactProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
