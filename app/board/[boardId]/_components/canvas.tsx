@@ -45,7 +45,6 @@ import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
 import { Path } from "./layer-types/path";
 import { useDeleteLayers } from "@/hooks/use-delete-layers";
-import { useRouter } from "next/router";
 
 const MAX_LAYERS = 100;
 
@@ -434,7 +433,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
   }, [selections]);
 
   return (
-    <main className="h-full w-full relative touch-none bg-secondary">
+    <main className="h-full w-full relative touch-none bg-muted">
       <Info boardId={boardId} />
       <Participants />
       <Toolbar

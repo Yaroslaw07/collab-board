@@ -65,7 +65,7 @@ export const BoardCard = ({
   return (
     <Link href={`/board/${id}`}>
       <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden">
-        <div className="relative flex-1 bg-secondary">
+        <div className="relative flex-1 bg-secondary/15">
           <Image
             src={imageUrl}
             alt={"Image of board"}
@@ -79,6 +79,7 @@ export const BoardCard = ({
             </button>
           </BoardActions>
         </div>
+        <div className="h-[2px] w-full bg-primary" />
         <Footer
           isFavorite={isFavorite}
           title={title}

@@ -46,7 +46,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
       disabled={disabled || pending}
       onClick={() => onClick()}
       className={cn(
-        "rounded-lg group col-span-1 aspect-[100/127] border bg-secondary relative flex flex-col justify-center items-center",
+        "rounded-lg group col-span-1 aspect-[100/127] border bg-secondary/20 relative flex flex-col justify-center items-center",
         (disabled || pending) &&
           "opacity-75 hover:opacity-75 cursor-not-allowed"
       )}
