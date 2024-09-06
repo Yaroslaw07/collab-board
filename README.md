@@ -12,6 +12,7 @@
 - **Backend Logic**: Powered by Convex for efficient server-side operations.
 - **Beautiful UI**: Styled with Tailwind CSS and Chadcn/UI for a responsive and sleek design.
 - **Custom Hooks & Providers**: Enhance reusability and state management.
+- **Subscription Management**: Implemented with Stripe for handling recurring payments and subscription models.
 
 ## 🛠️ Technologies Used
 
@@ -20,6 +21,7 @@
 - **Convex**: Handles server-side logic and data synchronization.
 - **Liveblocks**: Manages real-time collaboration and presence.
 - **Clerk**: User authentication and session management.
+- **Stripe**: Payment processing and financial infrastructure.
 
 ## 🧑‍💻 Getting Started
 
@@ -35,6 +37,8 @@
     - Create a `.env.local` file in the root of the project.
     - Add the required environment variable from `.env.example`
     - Replace the placeholder values with your actual keys.
+  
+    - Add the environment variables from `.env.convex.local` to Convex project
 4. **Run the development server**:
     ```bash
     npm run dev
@@ -47,7 +51,7 @@ The project is deployed on Vercel and can be accessed live at [collab-board.verc
 
 ## 📚 Documentation
 
-- For detailed setup and customization, check out the [Liveblocks](https://liveblocks.io/docs), [Clerk](https://clerk.dev/docs), and [Convex](https://docs.convex.dev) documentation.
+- For detailed setup and customization, check out the [Liveblocks](https://liveblocks.io/docs), [Clerk](https://clerk.dev/docs), [Convex](https://docs.convex.dev) and [Stripe](https://docs.stripe.com/) documentation.
 
 ## 🤝 Contributing
 
