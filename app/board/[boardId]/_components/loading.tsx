@@ -3,6 +3,7 @@ import { Loader } from "lucide-react";
 import { InfoSkeleton } from "./info";
 import { ParticipantsSkeleton } from "./participants";
 import { ToolbarSkeleton } from "./toolbar";
+import { ThemeButtonSkeleton } from "./theme-button";
 
 export const Loading = () => {
   return (
@@ -11,6 +12,7 @@ export const Loading = () => {
       <InfoSkeleton />
       <ParticipantsSkeleton />
       <ToolbarSkeleton />
+      <ThemeButtonSkeleton />
     </main>
   );
 };

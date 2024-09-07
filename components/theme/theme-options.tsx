@@ -1,10 +1,13 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuContentProps,
-  DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
+
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -13,19 +16,21 @@ interface ThemeOptionsProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
+  align?: DropdownMenuContentProps["align"];
 }
 
 export const ThemeOptions = ({
   children,
   side = "bottom",
   sideOffset = 12,
+  align = "center",
 }: ThemeOptionsProps) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted) return null; // Prevents mismatched rendering
+  if (!mounted) return null;
 
   return (
     <DropdownMenu>
@@ -34,7 +39,7 @@ export const ThemeOptions = ({
         onClick={(e) => e.stopPropagation()}
         side={side}
         sideOffset={sideOffset}
-        align="start"
+        align={align}
         className="w-50"
       >
         {/* Light Theme */}
