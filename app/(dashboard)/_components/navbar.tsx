@@ -23,11 +23,11 @@ export const Navbar = () => {
   const ThemeIcon = getIconByCurrentTheme(theme!);
 
   return (
-    <div className="flex items-center gap-x-2 px-6 py-2 ">
+    <div className="flex items-center gap-x-2 px-6 py-2">
       <div className="hidden lg:flex lg:flex-1">
         <SearchInput />
       </div>
-      <div className="block lg:hidden flex-1">
+      <div className="block lg:hidden flex-1 w-full">
         <OrganizationSwitcher
           hidePersonal
           appearance={{
@@ -37,16 +37,9 @@ export const Navbar = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
-                maxWidth: "376px",
               },
-              organizationSwitcherTrigger: {
-                padding: "8px",
-                width: "100%",
-                borderRadius: "8px",
-                border: "1px solid #E5E7EB",
-                justifyContent: "space-between",
-                backgroundColor: "#F9FAFB",
-              },
+              organizationSwitcherTrigger:
+                "p-[8px] w-[100%] rounded-md border-2 shadow-sm justify-between items-center border-[#0F172A] ",
             },
           }}
         />

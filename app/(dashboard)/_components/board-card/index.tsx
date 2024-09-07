@@ -64,7 +64,7 @@ export const BoardCard = ({
 
   return (
     <Link href={`/board/${id}`}>
-      <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden">
+      <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden shadow-sm">
         <div className="relative flex-1 bg-secondary/15">
           <Image
             src={imageUrl}

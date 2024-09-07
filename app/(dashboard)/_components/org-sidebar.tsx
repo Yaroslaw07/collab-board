@@ -78,14 +78,8 @@ export const OrgSidebar = () => {
               alignItems: "center",
               width: "100%",
             },
-            organizationSwitcherTrigger: {
-              padding: "8px",
-              width: "100%",
-              borderRadius: "8px",
-              border: "1px solid #E5E7EB",
-              justifyContent: "space-between",
-              backgroundColor: "#F9FAFB",
-            },
+            organizationSwitcherTrigger:
+              "p-[8px] w-full rounded-md border-2 shadow-sm justify-between items-center border-[#0F172A] ",
           },
         }}
       />
