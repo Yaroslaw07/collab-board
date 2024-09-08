@@ -25,7 +25,11 @@ export const get = query({
         .collect();
 
       const ids = favoriteBoards.map((b) => b.boardId);
-      const boards = await getAllOrThrow(ctx.db, ids);
+
+      const boards = (
+        await Promise.all(ids.map((id) => ctx.db.get(id)))
+      ).filter((board) => board);
+
       return boards.map((board) => ({ ...board, isFavorite: true }));
     }
 

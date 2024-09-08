@@ -64,14 +64,14 @@ export const BoardList = ({ orgId, query }: BoardListProps) => {
         <NewBoardButton orgId={orgId} />
         {data?.map((board) => (
           <BoardCard
-            key={board._id}
-            id={board._id}
-            title={board.title}
-            imageUrl={board.imageUrl}
-            authorId={board.authorId}
-            authorName={board.authorName}
-            createdAt={board._creationTime}
-            orgId={board.orgId}
+            key={board._id!}
+            id={board._id!}
+            title={board.title!}
+            imageUrl={board.imageUrl!}
+            authorId={board.authorId!}
+            authorName={board.authorName!}
+            createdAt={board._creationTime!}
+            orgId={board.orgId!}
             isFavorite={board.isFavorite}
           />
         ))}
