@@ -15,7 +15,7 @@ import { Hint } from "@/components/hint";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
-import { Actions } from "@/app/(dashboard)/_components/actions";
+import { BoardActions } from "@/app/(dashboard)/_components/board-actions";
 
 import { TabSeparator } from "./tab-separator";
 
@@ -42,14 +42,14 @@ export const Info = ({ boardId }: InfoProps) => {
   if (!board) return <InfoSkeleton />;
 
   return (
-    <div className="absolute top-2 left-2 bg-background rounded-md px-1.5 h-12 flex items-center shadow-md">
+    <div className="absolute top-2 left-3 bg-background rounded-md px-1.5 h-12 flex items-center shadow-md">
       <Hint label="Go to dashboard" side="bottom" sideOffset={10}>
         <Button asChild className="pl-1 pr-2" variant={"board"}>
           <Link href="/">
             <Image src="/logo.svg" width={45} height={45} alt="Logo" />
             <span
               className={cn(
-                "font-semibold text-xl ml-2 text-black",
+                "font-semibold text-xl ml-2 text-foreground",
                 font.className
               )}
             >
@@ -65,7 +65,12 @@ export const Info = ({ boardId }: InfoProps) => {
         </Button>
       </Hint>
       <TabSeparator />
-      <Actions id={board._id} title={board.title} side="bottom" sideOffset={10}>
+      <BoardActions
+        id={board._id}
+        title={board.title}
+        side="bottom"
+        sideOffset={10}
+      >
         <div>
           <Hint label="Main menu" side="bottom" sideOffset={10}>
             <Button size="icon" variant="board">
@@ -73,7 +78,7 @@ export const Info = ({ boardId }: InfoProps) => {
             </Button>
           </Hint>
         </div>
-      </Actions>
+      </BoardActions>
     </div>
   );
 };

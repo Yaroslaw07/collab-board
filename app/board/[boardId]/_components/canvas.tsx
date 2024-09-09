@@ -35,6 +35,7 @@ import {
   resizeBounds,
 } from "@/lib/utils";
 import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
+import { useDeleteLayers } from "@/hooks/use-delete-layers";
 
 import { Info } from "./info";
 import { Participants } from "./participants";
@@ -44,8 +45,7 @@ import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
 import { Path } from "./layer-types/path";
-import { useDeleteLayers } from "@/hooks/use-delete-layers";
-import { useRouter } from "next/router";
+import ThemeButton from "./theme-button";
 
 const MAX_LAYERS = 100;
 
@@ -434,9 +434,10 @@ export const Canvas = ({ boardId }: CanvasProps) => {
   }, [selections]);
 
   return (
-    <main className="h-full w-full relative touch-none bg-secondary">
+    <main className="h-full w-full relative touch-none bg-muted">
       <Info boardId={boardId} />
       <Participants />
+      <ThemeButton />
       <Toolbar
         canvasState={canvasState}
         setCanvasState={setCanvasState}
@@ -467,7 +468,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
           {canvasState.mode === CanvasMode.SelectionNet &&
             canvasState.current != null && (
               <rect
-                className="fill-accent/80 stroke-accent stroke-1"
+                className="fill-secondary/80 stroke-accent stroke-1"
                 x={Math.min(canvasState.origin.x, canvasState.current.x)}
                 y={Math.min(canvasState.origin.y, canvasState.current.y)}
                 width={Math.abs(canvasState.origin.x - canvasState.current.x)}

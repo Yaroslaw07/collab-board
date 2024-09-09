@@ -11,6 +11,7 @@ import {
   Side,
   XYWH,
 } from "@/types/canvas";
+import { Monitor, Moon, Sun } from "lucide-react";
 
 const COLORS = [
   "#DC2626",
@@ -170,4 +171,16 @@ export function getSvgPathFromStroke(stroke: number[][]) {
 
   d.push("Z");
   return d.join(" ");
+}
+
+export function getIconByCurrentTheme(theme: string) {
+  if (theme === "light") {
+    return Sun;
+  }
+
+  if (theme === "dark") {
+    return Moon;
+  }
+
+  return Monitor;
 }

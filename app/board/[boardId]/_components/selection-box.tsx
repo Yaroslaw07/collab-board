@@ -31,7 +31,7 @@ export const SelectionBox = memo(
     return (
       <>
         <rect
-          className="fill-transparent stroke-secondary stroke-1 pointer-events-none"
+          className="fill-transparent stroke-accent stroke-1 pointer-events-none"
           style={{ transform: `translate(${bounds.x}px, ${bounds.y}px)` }}
           x={0}
           y={0}
