@@ -65,7 +65,7 @@ export const BoardCard = ({
   return (
     <Link href={`/board/${id}`}>
       <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden shadow-sm">
-        <div className="relative flex-1 bg-secondary/15">
+        <div className="relative flex-1 bg-secondary/5">
           <Image
             src={imageUrl}
             alt={"Image of board"}
@@ -75,11 +75,11 @@ export const BoardCard = ({
           <Overlay />
           <BoardActions id={id} title={title} side="right">
             <button className="absolute top-0 right-1 opacity-0 group-hover:opacity-100 transition-opacity px-1 py-1 outline-none">
-              <MoreHorizontal className="h-7 w-7 text-primary opacity-75 hover:opacity-100 transition-opacity" />
+              <MoreHorizontal className="h-7 w-7 text-foreground opacity-75 hover:opacity-100 transition-opacity" />
             </button>
           </BoardActions>
         </div>
-        <div className="h-[2px] w-full bg-primary" />
+        <div className="h-[2px] w-full bg-accent/50" />
         <Footer
           isFavorite={isFavorite}
           title={title}

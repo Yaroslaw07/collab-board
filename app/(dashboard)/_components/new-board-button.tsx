@@ -46,21 +46,21 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
       disabled={disabled || pending}
       onClick={() => onClick()}
       className={cn(
-        "rounded-lg group shadow-sm col-span-1 aspect-[100/127] border bg-secondary/20 relative flex flex-col justify-center items-center",
+        "rounded-lg group shadow-sm col-span-1 aspect-[100/127] border bg-secondary/5 relative flex flex-col justify-center items-center",
         (disabled || pending) &&
           "opacity-75 hover:opacity-75 cursor-not-allowed"
       )}
     >
       <Plus
         className={cn(
-          "opacity-75 group-hover:opacity-100 h-12 w-12 text-primary stroke-2",
+          "opacity-75 group-hover:opacity-100 h-12 w-12 text-foreground stroke-2",
           (disabled || pending) && "opacity-45 group-hover:opacity-45"
         )}
       />
 
       <p
         className={cn(
-          "opacity-75 group-hover:opacity-100 font-semibold text-primary text-base mt-2",
+          "opacity-75 group-hover:opacity-100 font-semibold text-foreground text-base mt-2",
           (disabled || pending) && "opacity-45 group-hover:opacity-45"
         )}
       >

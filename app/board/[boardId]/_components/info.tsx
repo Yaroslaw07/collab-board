@@ -49,7 +49,7 @@ export const Info = ({ boardId }: InfoProps) => {
             <Image src="/logo.svg" width={45} height={45} alt="Logo" />
             <span
               className={cn(
-                "font-semibold text-xl ml-2 text-black",
+                "font-semibold text-xl ml-2 text-foreground",
                 font.className
               )}
             >

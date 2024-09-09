@@ -23,7 +23,7 @@ export const Navbar = () => {
   const ThemeIcon = getIconByCurrentTheme(theme!);
 
   return (
-    <div className="flex items-center gap-x-2 px-6 py-2">
+    <div className="flex items-center gap-x-2 px-6 py-2 pr-10">
       <div className="hidden lg:flex lg:flex-1">
         <SearchInput />
       </div>
