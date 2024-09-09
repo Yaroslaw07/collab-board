@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { ConvexReactProvider } from "@/providers/convex-client-provider";
 import { ModalProvider } from "@/providers/modal-providers";
 
@@ -30,6 +32,7 @@ export default function RootLayout({
             {children}
           </ConvexReactProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
