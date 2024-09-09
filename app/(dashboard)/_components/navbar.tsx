@@ -39,7 +39,7 @@ export const Navbar = () => {
                 width: "100%",
               },
               organizationSwitcherTrigger:
-                "p-[8px] w-[100%] rounded-md border-2 shadow-sm justify-between items-center border-[#0F172A] ",
+                "p-[8px] w-full rounded-md border-2 shadow-sm justify-between items-center text-foreground   hover:text-foreground focus:text-foreground",
             },
           }}
         />

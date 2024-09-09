@@ -76,7 +76,7 @@ export const OrgSidebar = () => {
               width: "100%",
             },
             organizationSwitcherTrigger:
-              "p-[8px] w-full rounded-md border-2 shadow-sm justify-between items-center text-foreground hover:bg-accent/5  hover:text-foreground",
+              "p-[8px] w-full rounded-md border-2 shadow-sm justify-between items-center text-foreground   hover:text-foreground focus:text-foreground",
           },
         }}
       />
