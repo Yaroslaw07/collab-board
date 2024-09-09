@@ -8,7 +8,7 @@ import { useAuth } from "@clerk/nextjs";
 import { formatDistanceToNow } from "date-fns";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { Actions } from "../actions";
+import { BoardActions } from "../board-actions";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 
 import { Overlay } from "./overlay";
@@ -64,8 +64,8 @@ export const BoardCard = ({
 
   return (
     <Link href={`/board/${id}`}>
-      <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden">
-        <div className="relative flex-1 bg-secondary">
+      <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden shadow-sm">
+        <div className="relative flex-1 bg-secondary/5">
           <Image
             src={imageUrl}
             alt={"Image of board"}
@@ -73,12 +73,13 @@ export const BoardCard = ({
             className="object-fit"
           />
           <Overlay />
-          <Actions id={id} title={title} side="right">
+          <BoardActions id={id} title={title} side="right">
             <button className="absolute top-0 right-1 opacity-0 group-hover:opacity-100 transition-opacity px-1 py-1 outline-none">
-              <MoreHorizontal className="h-7 w-7 text-primary opacity-75 hover:opacity-100 transition-opacity" />
+              <MoreHorizontal className="h-7 w-7 text-foreground opacity-75 hover:opacity-100 transition-opacity" />
             </button>
-          </Actions>
+          </BoardActions>
         </div>
+        <div className="h-[2px] w-full bg-accent/50" />
         <Footer
           isFavorite={isFavorite}
           title={title}

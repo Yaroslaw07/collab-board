@@ -21,7 +21,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useRenameModal } from "@/store/use-rename-modal";
 
-interface ActionProps {
+interface BoardActionProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
@@ -29,13 +29,13 @@ interface ActionProps {
   title: string;
 }
 
-export const Actions = ({
+export const BoardActions = ({
   children,
   side = "bottom",
   sideOffset = 12,
   id,
   title,
-}: ActionProps) => {
+}: BoardActionProps) => {
   const pathname = usePathname();
   const router = useRouter();
 

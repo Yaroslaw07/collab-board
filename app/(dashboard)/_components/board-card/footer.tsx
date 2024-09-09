@@ -47,10 +47,7 @@ export const Footer = ({
         )}
       >
         <Heart
-          className={cn(
-            "h-5 w-5",
-            isFavorite && "fill-accent text-[hsl(175,22%,23%)]"
-          )}
+          className={cn("h-5 w-5", isFavorite && "fill-accent text-accent]")}
         />
       </button>
     </div>
